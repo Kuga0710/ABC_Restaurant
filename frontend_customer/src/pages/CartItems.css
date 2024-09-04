@@ -1,0 +1,144 @@
+.cart-items-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.cart-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 320px; /* Increased margin bottom */
+}
+
+.cart-items {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.item-details {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.item-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.item-price {
+  font-size: 16px;
+  color: #555;
+  margin-top: 5px;
+}
+
+.item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-btn {
+  padding: 5px;
+  font-size: 18px;
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 40px; /* Increase width slightly */
+  height: 40px; /* Increase height slightly */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.quantity-value {
+  font-size: 16px;
+  width: 30px;
+  text-align: center;
+}
+
+.item-total-price {
+  font-size: 18px;
+  color: #333;
+}
+
+.remove-btn {
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 10px; /* Add padding for a larger clickable area */
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+}
+
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.continue-shopping, .checkout {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.continue-shopping {
+  background-color: #28a745;
+}
+
+.checkout {
+  background-color: #d54360;
+}
+
+.spacer {
+  height: 40px; /* Adjust this value for the desired spacing */
+}
+
+.order-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  margin-bottom: 20px;
+}
+
+.order-details label {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-details input, .order-details select {
+  padding: 5px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+

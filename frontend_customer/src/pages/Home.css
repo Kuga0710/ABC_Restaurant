@@ -1,0 +1,60 @@
+.home-page header {
+    background-color: rgb(251, 251, 251); /* Set background color to black */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 80px;
+}
+
+.rotating-image img {
+    animation: rotate 10s infinite linear; /* Rotate only the image */
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+header h1 {
+    font-size: 5rem;
+    color: black; /* Change font color to Black */
+    font-family: 'Cursive', cursive; /* Use a stylish font */
+}
+
+.home-page header h1,
+.home-page header h2 {
+    text-shadow: 2px 2px 8px #ffffff;
+}
+
+header h2 {
+    color: black; /* Change font color for h2 to Black */
+    font-family: 'Cursive', cursive; /* Use a stylish font for h2 */
+}
+
+.menu-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../utils/img/menu-img.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+img {
+    border-style: solid;
+    border-width: 0px;
+}
+
+@media only screen and (max-width: 768px) {
+    header h1 {
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    header h1 {
+        font-size: 3rem;
+    }
+}

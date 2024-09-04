@@ -1,0 +1,74 @@
+.menu-page {
+    padding: 2rem 0;
+}
+
+/* Add some custom styling to the Menu heading */
+.menu-page header h1 {
+    font-family: 'Poppins', sans-serif; /* Stylish font */
+    font-size: 3rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #232323; /* Changed heading color */
+}
+
+/* Search bar container */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem; /* Space below the search bar */
+}
+
+/* Search bar input styling */
+.search-bar-container .form-control {
+    width: 300px !important; /* Force the width of the search bar */
+    border-radius: 0 !important; /* Remove rounded corners */
+    box-shadow: none !important; /* Remove default shadow */
+    margin-right: 10px; /* Add some space between the input and button */
+}
+
+.search-bar-container .btn-primary {
+    background-color: black !important; /* Force the button color to black */
+    border-color: black !important; /* Ensure the border is also black */
+    border-radius: 0 !important; /* Remove rounded corners */
+    box-shadow: none !important; /* Remove default shadow */
+}
+
+.search-bar-container .btn-primary:hover {
+    background-color: #333 !important; /* Slightly lighter shade on hover */
+    border-color: #333 !important;
+}
+
+/* Card styling */
+.menu-item {
+    border: 1px solid #e0e0e0; /* Add a light border around each card */
+    border-radius: 8px; /* Slightly round corners */
+    width: 300px; /* Fixed width for the card */
+    height: 400px; /* Fixed height for the card */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-between; /* Distribute space between items */
+    margin: auto; /* Center the card horizontally */
+    overflow: hidden; /* Hide overflow if content is too large */
+}
+
+.menu-item .menu-image {
+    width: 100%; /* Ensure image takes full width */
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Cover the area without stretching */
+}
+
+.menu-item .description {
+    height: 60px; /* Fixed height for description */
+    overflow: hidden; /* Hide overflow if description is too long */
+}
+
+/* Button styles */
+.menu-item .btn {
+    margin: 5px; /* Space between buttons */
+}
+
+.alert {
+    margin-top: 20px;
+    color: green;
+}

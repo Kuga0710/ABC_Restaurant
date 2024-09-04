@@ -1,0 +1,42 @@
+.gallery-page {
+    padding: 2rem 0;
+}
+
+/* Add some custom styling to the Gallery heading */
+.gallery-page header h1 {
+    font-family: 'Poppins', sans-serif; /* Stylish font */
+    font-size: 3rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #232323; /* Changed heading color */
+}
+
+/* Card styling */
+.gallery-item {
+    border: 1px solid #e0e0e0; /* Add a light border around each card */
+    border-radius: 8px; /* Slightly round corners */
+    width: 300px; /* Fixed width for the card */
+    height: 400px; /* Fixed height for the card */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-between; /* Distribute space between items */
+    margin: auto; /* Center the card horizontally */
+    overflow: hidden; /* Hide overflow if content is too large */
+}
+
+.gallery-item .gallery-image {
+    width: 100%; /* Ensure image takes full width */
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Cover the area without stretching */
+}
+
+/* Button styles */
+.gallery-item .btn {
+    margin: 5px; /* Space between buttons */
+}
+
+.alert {
+    margin-top: 20px;
+    color: red;
+}

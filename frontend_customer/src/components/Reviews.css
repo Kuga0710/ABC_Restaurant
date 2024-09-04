@@ -1,0 +1,11 @@
+.reviews-section img {
+    width: 15%;
+    border-width: thin;
+}
+.text-warning {
+    color: #FFD700; /* Gold color for filled stars */
+}
+
+.text-secondary {
+    color: #d3d3d3; /* Light gray for unfilled stars */
+}

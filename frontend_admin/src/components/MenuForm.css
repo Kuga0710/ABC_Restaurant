@@ -1,0 +1,15 @@
+.menu-form-container {
+    position: fixed; /* Fixed position to overlay the form */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for the center */
+    background-color: white; /* Background color for better visibility */
+    padding: 20px; /* Padding for the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 1000; /* Ensures the form is on top */
+}
+
+.alert {
+    margin-bottom: 15px; /* Spacing for success message */
+}

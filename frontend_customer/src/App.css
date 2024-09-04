@@ -1,0 +1,18 @@
+.custom-navbar {
+  background-color: black !important;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-weight: bold !important;
+  font-family: Arial, sans-serif; /* Customize the font family if needed */
+}
+
+.navbar .nav-link {
+  color: white !important;
+}
+
+footer {
+  background-color: black;
+  color: white;
+}

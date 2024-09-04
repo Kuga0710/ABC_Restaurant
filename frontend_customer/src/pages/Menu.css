@@ -1,0 +1,91 @@
+/* Header background image */
+.menu-page header {
+    background-image: url(../utils/img/menu-img.jpg);
+    background-size: cover;  /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the image within the container */
+    height: 90vh;
+}
+
+/* Adjust the size of the menu images */
+.menu-page img {
+    max-width: 80%;  /* Ensure images do not exceed the width of their container */
+    height: auto;     /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image covers the container */
+}
+
+/* Add padding to images to ensure they look good on all screen sizes */
+.menu-page img {
+    padding: 15px;
+}
+
+/* Add some custom styling to the Menu heading */
+.menu-page header h1 {
+    font-family: 'Poppins', sans-serif; /* Stylish font */
+    font-size: 3rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Search bar container */
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem; /* Space below the search bar */
+}
+
+/* Search bar input styling */
+/* Ensure the CSS specificity is high enough to apply */
+.search-bar-container .form-control {
+    width: 300px !important; /* Force the width of the search bar */
+    border-radius: 0 !important; /* Remove rounded corners */
+    box-shadow: none !important; /* Remove default shadow */
+    margin-right: 10px; /* Add some space between the input and button */
+}
+
+.search-bar-container .btn-primary {
+    background-color: black !important; /* Force the button color to black */
+    border-color: black !important; /* Ensure the border is also black */
+    border-radius: 0 !important; /* Remove rounded corners */
+    box-shadow: none !important; /* Remove default shadow */
+}
+
+.search-bar-container .btn-primary:hover {
+    background-color: #333 !important; /* Slightly lighter shade on hover */
+    border-color: #333 !important;
+}
+
+
+/* Card image styling */
+.menu-item img {
+    max-width: 100%; /* Ensure images take up full width of the card */
+    height: 200px;   /* Fixed height to ensure uniformity across all cards */
+    object-fit: cover; /* Cover the space, maintaining the aspect ratio */
+}
+
+/* Card title styling */
+.menu-item .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Card description styling */
+.menu-item .description {
+    font-size: 1rem;
+}
+
+/* Card price styling */
+.menu-item .text-success {
+    color: #28a745; /* Ensuring the price text is styled consistently */
+}
+
+/* Add to Cart button styling */
+.menu-item .btn-success {
+    background-color: #28a745; /* Green background for Add to Cart button */
+    border-color: #28a745;
+}
+
+.menu-item .btn-success:hover {
+    background-color: #218838; /* Darker green on hover */
+    border-color: #1e7e34;
+}

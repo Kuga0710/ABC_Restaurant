@@ -1,0 +1,10 @@
+.about-page header {
+    background-image:url(../utils/img/about-page-img.jpg);
+    height: 40vh;
+}
+
+.chef-image {
+    height: 300px; /* Set a fixed height */
+    object-fit: cover; /* Ensures the image covers the entire area while maintaining aspect ratio */
+    width: 100%; /* Make sure it takes up the full width of the column */
+}

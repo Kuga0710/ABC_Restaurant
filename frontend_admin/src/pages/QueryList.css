@@ -1,0 +1,35 @@
+.query-list-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.query-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.query-table th, .query-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.query-table th {
+    background-color: #f2f2f2;
+}
+
+.query-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.query-table tbody tr:hover {
+    background-color: #f1f1f1;
+}

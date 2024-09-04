@@ -1,0 +1,15 @@
+header {
+    padding: 30px;
+    text-align: center;
+}
+
+header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+header h3 {
+    color: black;
+    font-weight: bold;
+}
