@@ -13,8 +13,7 @@ function Home() {
                 <div className='container'>
                     <div className='row'>
                         <div className='col-sm-6 d-flex d-sm-block flex-column align-items-center'>
-                            <h2 className='mb-0 fw-bold'>Welcome To</h2>
-                            <h1 className='mb-5 fw-bold text-center text-sm-start'>ABC Restaurant</h1>
+                            <h1 className='mb-5 fw-bold text-center text-sm-start'>The Taste That Makes You Feel Awesome</h1>
                             <MenuBtn />
                         </div>
                         <div className='col-sm-6 d-flex justify-content-center'>

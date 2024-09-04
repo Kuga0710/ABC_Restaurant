@@ -12,6 +12,7 @@ import ReserveTable from './pages/ReserveTable';
 import ReviewPage from './pages/ReviewPage';
 import CartItems from './pages/CartItems';
 import Login from './pages/Login';
+import Offers from './pages/Offers';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Nav className='me-auto justify-content-end w-100'>
               <Nav.Link as={Link} to="/" className='active text-uppercase'>Home</Nav.Link>
               <Nav.Link as={Link} to="/menu" className='text-uppercase'>Menu</Nav.Link>
+              <Nav.Link as={Link} to="/offers" className='text-uppercase'>Offers</Nav.Link>
               <Nav.Link as={Link} to="/booking" className='text-uppercase'>Services</Nav.Link>
               <Nav.Link as={Link} to="/about" className='text-uppercase'>About</Nav.Link>
               <Nav.Link as={Link} to="/orders" className='text-uppercase'>Basket</Nav.Link>
@@ -48,6 +50,8 @@ function App() {
         <Route path='/review-page' element={<ReviewPage />} />
         <Route path='/orders' element={<CartItems />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/offers" element={<Offers />} />
+
 
       </Routes>
 

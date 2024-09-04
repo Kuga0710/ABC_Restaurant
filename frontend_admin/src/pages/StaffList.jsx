@@ -1,9 +1,9 @@
-// CustomerList.jsx
+// StaffList.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './CustomerList.css'; // Import the CSS file for styles
+import './StaffList.css'; // Import the CSS file for styles
 
-const CustomerList = () => {
+const StaffList = () => {
     const [customers, setCustomers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -11,7 +11,7 @@ const CustomerList = () => {
     useEffect(() => {
         const fetchCustomers = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/api/v1/user/users?role=customer');
+                const response = await axios.get('http://localhost:8080/api/v1/user/users?role=staff');
                 if (response.data.statusCode === 200) {
                     setCustomers(response.data.data);
                 } else {
@@ -29,7 +29,7 @@ const CustomerList = () => {
 
     return (
         <div className="customer-list-container">
-            <h1>All Customer List</h1>
+            <h1>All Staff List</h1>
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
             {!loading && !error && (
@@ -56,4 +56,4 @@ const CustomerList = () => {
     );
 };
 
-export default CustomerList; // Ensure this line is present
+export default StaffList;

@@ -26,7 +26,7 @@ public class Menu {
     private byte[] image; // Store image data as byte array
 
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Cart> cartItems;
+//    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Cart> cartItems;
 
 }
