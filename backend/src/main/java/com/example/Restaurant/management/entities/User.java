@@ -34,36 +34,6 @@ public class User {
     @Column(nullable = false, columnDefinition = "varchar(255) default 'customer'")
     private String role = "customer";
 
-
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    private List<Orders> orders;
-
-////
-////    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-////    private Set<Reservation> reservations = new HashSet<>();
-////
-////    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-////    private Set<Query> queries = new HashSet<>();
-////
-////    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-////    private Set<EmailNotification> emailNotifications = new HashSet<>();
-////
-////    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-////    private Set<Feedback> feedbacks = new HashSet<>();
-////
-////    @OneToMany(mappedBy = "generatedBy", cascade = CascadeType.ALL)
-////    private Set<Report> reports = new HashSet<>();
-////
-////    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-////    private Set<UserGalleryView> userGalleryViews = new HashSet<>();
-//
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    private Set<Offer> offers = new HashSet<>();
-//
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-//    private Payment payment;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cart> cartItems;
-
 }

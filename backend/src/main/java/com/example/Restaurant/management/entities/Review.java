@@ -13,11 +13,9 @@ import org.antlr.v4.runtime.misc.NotNull;
 @Setter
 public class Review {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewId;
-
 
     private String name;
     private String review;
