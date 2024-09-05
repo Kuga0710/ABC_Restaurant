@@ -1,11 +1,13 @@
 package com.example.Restaurant.management.services;
 
 import com.example.Restaurant.management.dtos.OdersGetDto;
+import com.example.Restaurant.management.dtos.UserDto;
 import com.example.Restaurant.management.entities.Orders;
 import com.example.Restaurant.management.repositories.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +43,27 @@ public class OrdersServiceImpl implements OrdersService {
 
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public byte[] generateCsv(List<OdersGetDto> ordersGetDtos) {
+        StringBuilder csvBuilder = new StringBuilder();
+        // Adding CSV Header
+        csvBuilder.append("Id,UserName,PaymentType,OrderType,MobileNo,Address,TotalPrice,MenuNames,Status\n"); // Update based on UserDto properties
+
+        // Adding CSV Data
+        for (OdersGetDto order : ordersGetDtos) {
+            csvBuilder.append(order.getOrdersId()).append(",")  // Update based on UserDto properties
+                    .append(order.getUserName()).append(",")
+                    .append(order.getPaymentType()).append(",")
+                    .append(order.getOrderType()).append(",")
+                    .append(order.getMobileNumber()).append(",")
+                    .append(order.getAddress()).append(",")
+                    .append(order.getTotalPrice()).append(",")
+                    .append(order.getMenuNames()).append(",")
+                    .append(order.getStatus()).append("\n"); // Update based on UserDto properties
+        }
+
+        return csvBuilder.toString().getBytes(StandardCharsets.UTF_8);
     }
 }

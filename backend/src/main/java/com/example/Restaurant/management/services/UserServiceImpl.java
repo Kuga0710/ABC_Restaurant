@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,6 +57,23 @@ public class UserServiceImpl implements UserService{
         BeanUtils.copyProperties(user, dto);
             return dto;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public byte[] generateCsv(List<UserDto> users) {
+        StringBuilder csvBuilder = new StringBuilder();
+        // Adding CSV Header
+        csvBuilder.append("Id,Name,Email,Role\n"); // Update based on UserDto properties
+
+        // Adding CSV Data
+        for (UserDto user : users) {
+            csvBuilder.append(user.getId()).append(",")  // Update based on UserDto properties
+                    .append(user.getUsername()).append(",")
+                    .append(user.getEmail()).append(",")
+                    .append(user.getRole()).append("\n"); // Update based on UserDto properties
+        }
+
+        return csvBuilder.toString().getBytes(StandardCharsets.UTF_8);
     }
 
 }

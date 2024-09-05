@@ -11,4 +11,5 @@ public interface UserService {
     User updateUser(Long id, UserDto userDto);
     boolean deleteUser(Long id);
     List<UserDto> getAllUsersByRole(String role);
+    byte[] generateCsv(List<UserDto> users);
 }

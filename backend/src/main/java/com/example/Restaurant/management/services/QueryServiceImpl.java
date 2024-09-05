@@ -10,12 +10,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class QueryServiceImpl implements QueryService{
+
 
     @Autowired
     private QueryRepository queryRepository;
@@ -37,4 +39,23 @@ public class QueryServiceImpl implements QueryService{
             BeanUtils.copyProperties(query, dto);
             return dto;
         }).collect(Collectors.toList());    }
+
+    @Override
+    public byte[] generateCsv(List<QueryDto> queryDtos) {
+        StringBuilder csvBuilder = new StringBuilder();
+        // Adding CSV Header
+        csvBuilder.append("Id,UserName,Email,subject,message\n"); // Update based on QueryDto properties
+
+        // Adding CSV Data
+        for (QueryDto query : queryDtos) {
+            csvBuilder.append(query.getQueryId()).append(",")  // Update based on QueryDto properties
+                    .append(query.getName()).append(",")
+                    .append(query.getEmail()).append(",")
+                    .append(query.getSubject()).append(",")
+                    .append(query.getMessage()).append("\n"); // Update based on QueryDto properties
+        }
+
+        return csvBuilder.toString().getBytes(StandardCharsets.UTF_8);
+    }
+
 }

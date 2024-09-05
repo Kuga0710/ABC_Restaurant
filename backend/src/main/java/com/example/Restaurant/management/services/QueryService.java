@@ -8,4 +8,5 @@ import java.util.List;
 public interface QueryService {
     Query createQuery(QueryDto queryDto);
     List<QueryDto> getAllQuery();
+    byte[] generateCsv(List<QueryDto> queryDtos);
 }

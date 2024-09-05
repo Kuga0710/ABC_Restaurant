@@ -6,4 +6,6 @@ import java.util.List;
 public interface OrdersService {
 
     List<OdersGetDto> getAllOrders();
+
+    byte[] generateCsv(List<OdersGetDto> ordersGetDtos);
 }

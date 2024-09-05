@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +60,22 @@ public class UserController {
                     ValidationMessages.RETRIEVED_FAILED,
                     null
             ));
+        }
+    }
+
+    @GetMapping("/users/csv")
+    public ResponseEntity<byte[]> getAllUsersByRoleAsCsv(@RequestParam("role") String role) {
+        List<UserDto> users = userService.getAllUsersByRole(role);
+
+        if (users != null && !users.isEmpty()) {
+            byte[] csvData =userService.generateCsv(users);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=users.csv");
+            headers.add(HttpHeaders.CONTENT_TYPE, "text/csv");
+
+            return ResponseEntity.ok().headers(headers).body(csvData);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 

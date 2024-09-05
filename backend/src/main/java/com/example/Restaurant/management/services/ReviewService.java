@@ -9,4 +9,6 @@ public interface ReviewService {
 
     Review createReview(ReviewDto reviewDto);
     List<ReviewDto> getAllReviews();
+
+    byte[] generateCsv(List<ReviewDto> reviewDtos);
 }

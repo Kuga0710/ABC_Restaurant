@@ -8,4 +8,5 @@ import java.util.List;
 public interface ReservationService {
     Reservation createReservation(ReservationDto reservationDto);
     List<ReservationDto> getAllReservation();
+    byte[] generateCsv(List<ReservationDto> reservationDtos);
 }

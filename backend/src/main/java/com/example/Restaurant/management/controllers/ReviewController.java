@@ -1,5 +1,6 @@
 package com.example.Restaurant.management.controllers;
 
+import com.example.Restaurant.management.dtos.QueryDto;
 import com.example.Restaurant.management.dtos.ReviewDto;
 import com.example.Restaurant.management.entities.Review;
 import com.example.Restaurant.management.enums.RestApiResponseStatusCodes;
@@ -8,6 +9,7 @@ import com.example.Restaurant.management.utilities.ResponseWrapper;
 import com.example.Restaurant.management.utilities.ValidationMessages;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +56,22 @@ public class ReviewController {
                     ValidationMessages.RETRIEVED,
                     reviewDtos
             ));
+        }
+    }
+
+    @GetMapping("/csv")
+    public ResponseEntity<byte[]> downloadQueryCsv() {
+        List<ReviewDto> reviewDtos =reviewService.getAllReviews();
+
+        if (reviewDtos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } else {
+            byte[] csvData = reviewService.generateCsv(reviewDtos);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=reviews.csv");
+            headers.add(HttpHeaders.CONTENT_TYPE, "text/csv");
+
+            return ResponseEntity.ok().headers(headers).body(csvData);
         }
     }
 }

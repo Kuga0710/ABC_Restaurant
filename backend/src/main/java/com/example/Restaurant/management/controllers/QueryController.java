@@ -10,6 +10,7 @@ import com.example.Restaurant.management.services.QueryService;
 import com.example.Restaurant.management.utilities.ResponseWrapper;
 import com.example.Restaurant.management.utilities.ValidationMessages;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +58,22 @@ public class QueryController {
                     ValidationMessages.RETRIEVED,
                     queryDtos
             ));
+        }
+    }
+
+    @GetMapping("/csv")
+    public ResponseEntity<byte[]> downloadQueryCsv() {
+        List<QueryDto> queryDtos = queryService.getAllQuery();
+
+        if (queryDtos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } else {
+            byte[] csvData = queryService.generateCsv(queryDtos);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=queries.csv");
+            headers.add(HttpHeaders.CONTENT_TYPE, "text/csv");
+
+            return ResponseEntity.ok().headers(headers).body(csvData);
         }
     }
 }

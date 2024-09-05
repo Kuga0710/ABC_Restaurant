@@ -17,24 +17,42 @@ const Orders = () => {
 
   return (
     <div className="orders-container">
-      <h2>All Orders list</h2>
+      <h2>All Orders List</h2>
       {orders.length === 0 ? (
         <p>No orders available.</p>
       ) : (
-        orders.map(order => (
-          <div key={order.ordersId} className="order-card">
-            <h3>Order ID: {order.ordersId}</h3>
-            <p><strong>User Name:</strong> {order.userName}</p>
-            <p><strong>Payment Type:</strong> {order.paymentType}</p>
-            <p><strong>Order Type:</strong> {order.orderType}</p>
-            <p><strong>Mobile Number:</strong> {order.mobileNumber || 'N/A'}</p>
-            <p><strong>Address:</strong> {order.address || 'N/A'}</p>
-            <p><strong>Total Price:</strong> ${order.totalPrice.toFixed(2)}</p>
-            <p><strong>Menu Names:</strong> {order.menuNames}</p>
-            <p><strong>Status:</strong> {order.status}</p>
-          </div>
-        ))
+        <table className="orders-table">
+          <thead>
+            <tr>
+              <th className="col-id">Order ID</th>
+              <th className="col-username">User Name</th>
+              <th className="col-payment">Payment Type</th>
+              <th className="col-order">Order Type</th>
+              <th className="col-mobile">Mobile Number</th>
+              <th className="col-address">Address</th>
+              <th className="col-price">Total Price</th>
+              <th className="col-menu">Menu Names</th>
+              <th className="col-status">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map(order => (
+              <tr key={order.ordersId}>
+                <td className="col-id">{order.ordersId}</td>
+                <td className="col-username">{order.userName}</td>
+                <td className="col-payment">{order.paymentType}</td>
+                <td className="col-order">{order.orderType}</td>
+                <td className="col-mobile">{order.mobileNumber || 'N/A'}</td>
+                <td className="col-address">{order.address || 'N/A'}</td>
+                <td className="col-price">Rs.{order.totalPrice.toFixed(2)}</td>
+                <td className="col-menu">{order.menuNames}</td>
+                <td className="col-status">{order.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
+      <button className="csv-button">Generate CSV Report</button>
     </div>
   );
 };
