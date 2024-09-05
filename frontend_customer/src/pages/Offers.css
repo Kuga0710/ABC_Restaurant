@@ -5,7 +5,7 @@
 
 /* Add padding to images to ensure they look good on all screen sizes */
 /* Add some custom styling to the Menu heading */
-.menu-page header h1 {
+.offers-page header h1 {
     font-family: 'Poppins', sans-serif; /* Stylish font */
     font-size: 3rem;
     letter-spacing: 0.05em;
@@ -43,35 +43,35 @@
 
 
 /* Card image styling */
-.menu-item img {
+.offers-item img {
     max-width: 100%; /* Ensure images take up full width of the card */
     height: 200px;   /* Fixed height to ensure uniformity across all cards */
     object-fit: cover; /* Cover the space, maintaining the aspect ratio */
 }
 
 /* Card title styling */
-.menu-item .card-title {
+.offers-item .card-title {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
 /* Card description styling */
-.menu-item .description {
+.offers-item .description {
     font-size: 1rem;
 }
 
 /* Card price styling */
-.menu-item .text-success {
+.offers-item .text-success {
     color: #28a745; /* Ensuring the price text is styled consistently */
 }
 
 /* Add to Cart button styling */
-.menu-item .btn-success {
+.offers-item .btn-success {
     background-color: #28a745; /* Green background for Add to Cart button */
     border-color: #28a745;
 }
 
-.menu-item .btn-success:hover {
+.offers-item .btn-success:hover {
     background-color: #218838; /* Darker green on hover */
     border-color: #1e7e34;
 }

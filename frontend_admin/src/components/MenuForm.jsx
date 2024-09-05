@@ -14,21 +14,24 @@ const MenuForm = ({ menuData, onClose, onSuccess }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+    
+        // Create FormData and append individual fields directly
         const formData = new FormData();
         formData.append('name', name);
         formData.append('description', description);
         formData.append('price', price);
         formData.append('availabilityStatus', availabilityStatus);
+    
+        // Append the image file if it exists
         if (image) {
             formData.append('image', image);
         }
-
-        const apiUrl = menuId ? `http://localhost:8080/api/v1/menu/${menuId}` : 'http://localhost:8080/api/v1/menu';
-        const method = menuId ? 'put' : 'post';
-
+    
         axios({
-            method: method,
-            url: apiUrl,
+            method: menuId ? 'put' : 'post',
+            url: menuId 
+                 ? `http://localhost:8080/api/v1/menu/${menuId}` 
+                 : 'http://localhost:8080/api/v1/menu',
             data: formData,
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -38,15 +41,15 @@ const MenuForm = ({ menuData, onClose, onSuccess }) => {
             setSuccessMessage('Menu item saved successfully');
             setTimeout(() => {
                 setSuccessMessage('');
-                onSuccess(); // Call the success handler to refresh the menu
-                onClose();   // Close the form
+                onSuccess();
+                onClose();
             }, 2000);
         })
         .catch(error => {
-            console.error('There was an error saving the menu item!', error);
+            console.error('There was an error saving the menu item!', error.response.data);
         });
-    };
-
+            };
+        
     return (
         <div className="menu-form-container">
             <h2>{menuId ? 'Edit Menu' : 'Add Menu'}</h2>

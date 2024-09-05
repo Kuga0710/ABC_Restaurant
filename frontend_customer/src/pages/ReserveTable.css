@@ -65,3 +65,14 @@ img {
     background-color: #f8d7da;
     color: #fc6473;
 }
+
+.offers-page-header {
+    padding: 20px 0; /* Adjust padding for a smaller header */
+    text-align: center;
+    margin-top: 70px; /* Add space above the heading to avoid overlap with the navigation bar */
+}
+
+.offers-header-image {
+    width: 30%;
+    height: auto; /* Ensure the image maintains its aspect ratio */
+}

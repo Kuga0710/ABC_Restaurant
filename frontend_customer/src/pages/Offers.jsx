@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './Offers.css';
 import axios from 'axios';
 import { Card, Button } from 'react-bootstrap';
+import offersImage from '../utils/img/offers.jpg';
+
 
 function Offers() {
     const [offers, setOffers] = useState([]);
@@ -23,12 +25,12 @@ function Offers() {
     }, []);
 
     return (
-        <div className='menu-page'>
+        <div className='offers-page'>
+            <header className='offers-page-header'>
+                <img src={offersImage} alt="offers Header" className='img-fluid offers-header-image'/>
+            </header>
         <div className='container mt-5'>
-            <div className="text-center mb-4">
-            <img src="/utils/img/offers.png" alt="Offers" className="img-fluid" style={{ width: '150px', height: 'auto' }} />
-            <h2 className='mt-5'>Offers</h2>
-            </div>    
+               
                 <div className='row'>
                     {offers.map((offer, index) => (
                         <div key={index} className='col-lg-4 mb-5'>
