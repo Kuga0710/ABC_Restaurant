@@ -68,8 +68,17 @@ public class MenuController {
 
 
     @PutMapping("{id}")
-    public ResponseEntity<ResponseWrapper<Menu>> updateMenu(@PathVariable("id") Long id, @RequestBody MenuDto menuDto) {
-        Menu updatedMenu = menuService.updateMenu(id, menuDto);
+    public ResponseEntity<ResponseWrapper<Menu>> updateMenu(
+            @PathVariable("id") Long id,
+            @RequestParam(value = "file") MultipartFile file,
+            @RequestParam("menu") String menuDtoString) throws JsonProcessingException {
+
+        // Convert the menuDtoString to a MenuDto object
+        MenuDto menuDto = new ObjectMapper().readValue(menuDtoString, MenuDto.class);
+
+        // Call the service to update the menu (passing both the menuDto and the file)
+        Menu updatedMenu = menuService.updateMenu(id, menuDto, file);
+
         if (updatedMenu != null) {
             return ResponseEntity.ok(new ResponseWrapper<>(
                     RestApiResponseStatusCodes.SUCCESS.getCode(),
@@ -84,6 +93,7 @@ public class MenuController {
             ));
         }
     }
+
 
     @DeleteMapping("{id}")
     public ResponseEntity<ResponseWrapper<Void>> deleteMenu(@PathVariable Long id) {

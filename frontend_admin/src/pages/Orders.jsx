@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Orders.css';
+import axios from 'axios';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -14,7 +15,23 @@ const Orders = () => {
       })
       .catch(error => console.error('Error fetching orders:', error));
   }, []);
-
+  // Function to handle CSV download
+  const downloadCsv = async () => {
+    try {
+        const response = await axios.get('http://localhost:8080/api/v1/orders/csv', {
+            responseType: 'blob', // Important for file downloads
+        });
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'orders_report.csv'); // Filename for the downloaded file
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    } catch (error) {
+        console.error('Error downloading the CSV file:', error);
+    }
+};
   return (
     <div className="orders-container">
       <h2>All Orders List</h2>
@@ -52,8 +69,8 @@ const Orders = () => {
           </tbody>
         </table>
       )}
-      <button className="csv-button">Generate CSV Report</button>
-    </div>
+      <button className="csv-button" onClick={downloadCsv}>Generate CSV Report</button>
+      </div>
   );
 };
 

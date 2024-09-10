@@ -15,16 +15,21 @@ const MenuForm = ({ menuData, onClose, onSuccess }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
     
-        // Create FormData and append individual fields directly
+        // Create the menu object
+        const menu = {
+            name,
+            description,
+            price: parseFloat(price), // Convert to float for the backend
+            availabilityStatus
+        };
+
+        // Create FormData and append the JSON string and the file
         const formData = new FormData();
-        formData.append('name', name);
-        formData.append('description', description);
-        formData.append('price', price);
-        formData.append('availabilityStatus', availabilityStatus);
+        formData.append('menu', JSON.stringify(menu)); // Append the menu object as a JSON string
     
         // Append the image file if it exists
         if (image) {
-            formData.append('image', image);
+            formData.append('file', image);
         }
     
         axios({
@@ -46,9 +51,9 @@ const MenuForm = ({ menuData, onClose, onSuccess }) => {
             }, 2000);
         })
         .catch(error => {
-            console.error('There was an error saving the menu item!', error.response.data);
+            console.error('There was an error saving the menu item!', error.response?.data || error);
         });
-            };
+    };
         
     return (
         <div className="menu-form-container">
@@ -101,7 +106,7 @@ const MenuForm = ({ menuData, onClose, onSuccess }) => {
                     <Form.Control 
                         type="file" 
                         onChange={(e) => setImage(e.target.files[0])} 
-                        required 
+                        required={!menuId} // Make image required only for new menu
                     />
                 </Form.Group>
 

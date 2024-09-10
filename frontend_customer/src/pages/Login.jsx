@@ -4,59 +4,62 @@ import './Login.css';
 
 function Login() {
     const [isRegistering, setIsRegistering] = useState(false);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [username, setUsername] = useState(''); // State for username
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState(''); // State for email during registration
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    // Login handler
     const handleLogin = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
         try {
-            const response = await axios.post('http://localhost:8089/api/v1/auth/login', {
-                email,
+            const response = await axios.post('http://localhost:8080/api/v1/user/login', {
+                username, // Assuming you are now using username
                 password,
             });
+    
             if (response.status === 200) {
+                const token = response.data.token; // Adjust according to your API response structure
+                localStorage.setItem('token', token); // Store the token in local storage
                 setSuccess('Login successful!');
-                setEmail('');
-                setPassword('');
                 setTimeout(() => setSuccess(''), 2000); // Clear success message after 2 seconds
             }
         } catch (err) {
-            setError('Invalid email or password. Please try again.');
-            setEmail('');
-            setPassword('');
+            setError('Invalid username or password. Please try again.');
             setTimeout(() => setError(''), 2000); // Clear error message after 2 seconds
         }
     };
+    
+    
 
+    // Sign up handler
     const handleRegister = async (e) => {
         e.preventDefault();
         setError('');
         setSuccess('');
         try {
-            const response = await axios.post('http://localhost:8089/api/v1/auth/register', {
+            const response = await axios.post('http://localhost:8080/api/v1/user/register', {
                 username,
-                email,
                 password,
+                email, // Include email for registration
             });
             if (response.status === 200) {
                 setSuccess('Registration successful! You can now log in.');
                 setUsername('');
-                setEmail('');
                 setPassword('');
-                setTimeout(() => setSuccess(''), 2000); // Clear success message after 2 seconds
-                setIsRegistering(false); // Toggle back to login
+                setEmail('');
+                setTimeout(() => setSuccess(''), 3000); // Clear success message after 3 seconds
+                setIsRegistering(false); // Toggle back to login after successful registration
             }
         } catch (err) {
-            setError('Failed to register. Please try again.');
+            setError('Registration failed! Please check your details and try again.');
             setUsername('');
-            setEmail('');
             setPassword('');
-            setTimeout(() => setError(''), 2000); // Clear error message after 2 seconds
+            setEmail('');
+            setTimeout(() => setError(''), 3000); // Clear error message after 3 seconds
         }
     };
 
@@ -64,30 +67,30 @@ function Login() {
         <div className="login-container">
             <h2>{isRegistering ? 'Sign Up' : 'Login'}</h2>
             <form onSubmit={isRegistering ? handleRegister : handleLogin}>
+                <div className="form-group">
+                    <label htmlFor="username">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                </div>
                 {isRegistering && (
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="email">Email</label>
                         <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
                 )}
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input

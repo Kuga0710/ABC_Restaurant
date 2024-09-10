@@ -57,13 +57,22 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu updateMenu(Long id, MenuDto menuDto) {
+    public Menu updateMenu(Long id, MenuDto menuDto, MultipartFile file) {
         Menu menu = menuRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Invalid Menu ID"));
 
+        if (file != null && !file.isEmpty()) {
+            try {
+                menu.setImage(file.getBytes());
+            } catch (IOException e) {
+                throw new RuntimeException("Error occurred while processing the image", e);
+            }
+        }
         BeanUtils.copyProperties(menuDto, menu);
+
         return menuRepository.save(menu);
     }
+
 
     @Override
     public boolean deleteMenu(Long id) {
