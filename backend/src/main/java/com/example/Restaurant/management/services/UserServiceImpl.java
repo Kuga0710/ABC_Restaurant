@@ -1,5 +1,6 @@
 package com.example.Restaurant.management.services;
 
+import com.example.Restaurant.management.config.JWTService;
 import com.example.Restaurant.management.dtos.ReviewDto;
 import com.example.Restaurant.management.dtos.UserDto;
 import com.example.Restaurant.management.entities.User;
@@ -8,6 +9,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
@@ -20,13 +25,13 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public User createUser(UserDto userDto) {
-        User user = new User();
-        BeanUtils.copyProperties(userDto, user, "id","role");
-        return userRepository.save(user);
-    }
+    @Autowired
+    AuthenticationManager authenticationManager;
 
+    @Autowired
+    private JWTService jwtService;
+
+    private BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
 
 
     @Override
@@ -74,6 +79,25 @@ public class UserServiceImpl implements UserService{
         }
 
         return csvBuilder.toString().getBytes(StandardCharsets.UTF_8);
+    }
+
+    @Override
+    public String verify(UserDto userDto) {
+        Authentication authentication=
+                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken
+                        (userDto.getUsername(),userDto.getPassword()));
+        if(authentication.isAuthenticated())
+            return jwtService.generateToken(userDto.getUsername());
+        return "fail";
+    }
+
+    @Override
+    public User register(UserDto userDto) {
+        User user=new User();
+        user.setPassword(encoder.encode(userDto.getPassword()));
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        return userRepository.save(user);
     }
 
 }

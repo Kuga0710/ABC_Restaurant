@@ -4,9 +4,9 @@ import './Login.css';
 
 function Login() {
     const [isRegistering, setIsRegistering] = useState(false);
-    const [username, setUsername] = useState(''); // State for username
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [email, setEmail] = useState(''); // State for email during registration
+    const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
@@ -17,24 +17,23 @@ function Login() {
         setSuccess('');
         try {
             const response = await axios.post('http://localhost:8080/api/v1/user/login', {
-                username, // Assuming you are now using username
+                username,
                 password,
             });
-    
+
             if (response.status === 200) {
-                const token = response.data.token; // Adjust according to your API response structure
-                localStorage.setItem('token', token); // Store the token in local storage
+                const token = response.data; // This depends on the exact response structure
+                // In case your token is directly returned in response body as seen in Postman
+                localStorage.setItem('token', token);
+
                 setSuccess('Login successful!');
                 setTimeout(() => setSuccess(''), 2000); // Clear success message after 2 seconds
             }
         } catch (err) {
             setError('Invalid username or password. Please try again.');
             setTimeout(() => setError(''), 2000); // Clear error message after 2 seconds
-        }
+        }
     };
-    
-    
-
     // Sign up handler
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -46,6 +45,7 @@ function Login() {
                 password,
                 email, // Include email for registration
             });
+
             if (response.status === 200) {
                 setSuccess('Registration successful! You can now log in.');
                 setUsername('');
@@ -108,7 +108,7 @@ function Login() {
             </form>
             {error && <div className="error-message">{error}</div>}
             {success && <div className="success-message">{success}</div>}
-            <div className="footer-space"></div> {/* Space between form and footer */}
+            <div className="footer-space"></div>
             <button
                 type="button"
                 className="login-button"

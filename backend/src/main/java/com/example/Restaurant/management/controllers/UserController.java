@@ -24,24 +24,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
-    public ResponseEntity<ResponseWrapper<User>> createUser(@Valid @RequestBody UserDto userDto) {
-        User createdUser = userService.createUser(userDto);
-        if (createdUser != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>(
-                    RestApiResponseStatusCodes.CREATED.getCode(),
-                    ValidationMessages.SAVED_SUCCESSFULL,
-                    null
-            ));
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseWrapper<>(
-                    RestApiResponseStatusCodes.BAD_REQUEST.getCode(),
-                    ValidationMessages.SAVE_FAILED,
-                    null
-            ));
-        }
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody UserDto userDto) {
+        User registeredUser = userService.register(userDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(registeredUser);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody UserDto userDto) {
+        String token = userService.verify(userDto);
+        if (token != null) {
+            return ResponseEntity.ok(token);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        }
+    }
     @GetMapping("/users")
     public ResponseEntity<ResponseWrapper<List<UserDto>>> getAllUsersByRole(
             @RequestParam("role") String role) {
